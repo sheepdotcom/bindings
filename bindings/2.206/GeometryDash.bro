@@ -2830,7 +2830,7 @@ class EditButtonBar : cocos2d::CCNode {
 
 	int getPage();
 	void goToPage(int); // inlined on win
-	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows);
+	bool init(cocos2d::CCArray* objects, cocos2d::CCPoint size, int unk, bool unkBool, int columns, int rows); // inlined on win
 	void loadFromItems(cocos2d::CCArray*, int, int, bool) = win 0xd0e10;
 	void onLeft(cocos2d::CCObject* sender) = win 0xd1800;
 	void onRight(cocos2d::CCObject* sender) = win 0xd1790;
@@ -3426,10 +3426,10 @@ class EffectGameObject : EnhancedGameObject {
 	// virtual ~EffectGameObject();
 	// EffectGameObject();
 
-	static EffectGameObject* create(char const*); // inlined on windows
+	static EffectGameObject* create(char const*) = win 0x485d20;
 
 	TodoReturn getTargetColorIndex();
-	bool init(char const*); // inlined on windows :(
+	bool init(char const*) = win 0x4797a0;
 	TodoReturn playTriggerEffect() = win 0x4798b0;
 	TodoReturn resetSpawnTrigger();
 	void setTargetID(int);
@@ -10717,14 +10717,14 @@ class LevelTools {
 	static GJGameLevel* getLevel(int, bool) = win 0x304880;
 	static TodoReturn getLevelList();
 	static SongInfoObject* getSongObject(int);
-	static TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
+	static void moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int) = win 0x30cc80;
 	static gd::string nameForArtist(int) = win 0x308950;
 	static gd::string ngURLForArtist(int) = win 0x309f70;
 	static TodoReturn offsetBPMForTrack(int);
 	static float posForTime(float, cocos2d::CCArray*, int, bool, int&);
 	static float posForTimeInternal(float, cocos2d::CCArray*, int, bool, bool, bool, int&, int);
-	static TodoReturn sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool);
-	static TodoReturn sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*);
+	static void sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool) = win 0x30cd50;
+	static void sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*) = win 0x30cfd0;
 	static float timeForPos(cocos2d::CCPoint, cocos2d::CCArray*, int, int, int, bool, bool, bool, bool, int);
 	static TodoReturn toggleDebugLogging(bool);
 	static gd::string urlForAudio(int) = win 0x308c50;
@@ -12824,9 +12824,9 @@ class RandTriggerGameObject : ChanceTriggerGameObject {
 	int getTotalChance();
 
 	virtual bool init() = m1 0x17a52c, imac 0x1bdd90;
-	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = m1 0x17a7a8, imac 0x1be020;
-	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = m1 0x17a9f0, imac 0x1be280;
-	virtual gd::string getSaveString(GJBaseGameLayer*) = m1 0x17afd8, imac 0x1be8d0;
+	virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x487d40, m1 0x17a7a8, imac 0x1be020;
+	virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x487f10, m1 0x17a9f0, imac 0x1be280;
+	virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x488110, m1 0x17afd8, imac 0x1be8d0;
 }
 
 [[link(android)]]
@@ -15998,10 +15998,10 @@ class TableViewDelegate {
 class TeleportPortalObject : RingObject {
 	// virtual ~TeleportPortalObject();
 
-	static TeleportPortalObject* create(char const*, bool) = win 0x485d20, imac 0x1b8ac0;
+	static TeleportPortalObject* create(char const*, bool) = imac 0x1b8ac0;
 
 	TodoReturn getTeleportXOff(cocos2d::CCNode*) = win 0x485fa0;
-	bool init(char const*, bool) = win 0x4797a0;
+	bool init(char const*, bool);
 	void setPositionOverride(cocos2d::CCPoint);
 	void setStartPosOverride(cocos2d::CCPoint);
 
